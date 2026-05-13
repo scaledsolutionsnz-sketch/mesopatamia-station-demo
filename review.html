@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave a Review — Mesopotamia Station</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{--accent:#b8935a;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#f6f1e8;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+    .card{background:#fff;border-radius:24px;padding:3rem 2.5rem;max-width:460px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(26,24,18,0.1);}
+    .logo{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#1a1812;margin-bottom:2rem;}
+    .logo span{color:var(--accent);}
+    h1{font-family:'Syne',sans-serif;font-size:1.55rem;font-weight:800;margin-bottom:0.5rem;}
+    p{font-size:0.9rem;color:#6b5f4a;margin-bottom:2.5rem;line-height:1.6;}
+    .stars{display:flex;justify-content:center;gap:0.75rem;margin-bottom:0.75rem;}
+    .star{font-size:2.8rem;cursor:pointer;transition:transform 0.15s;line-height:1;}
+    .star:hover,.star.active{transform:scale(1.15);}
+    .hint{font-size:0.78rem;color:#9b8070;margin-bottom:2rem;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">Mesopotamia <span>Station</span></div>
+    <h1>How was your experience?</h1>
+    <p>We'd love to hear your thoughts. Tap the stars to rate your experience with us.</p>
+    <div class="stars" id="stars">
+      <span class="star" data-val="1">⭐</span>
+      <span class="star" data-val="2">⭐</span>
+      <span class="star" data-val="3">⭐</span>
+      <span class="star" data-val="4">⭐</span>
+      <span class="star" data-val="5">⭐</span>
+    </div>
+    <div class="hint" id="hint">Tap a star to rate</div>
+  </div>
+  <script>
+    const labels=['','Poor','Below average','Good','Great','Excellent!'];
+    const googleUrl='https://g.page/r/review';
+    document.querySelectorAll('.star').forEach(s=>{
+      s.addEventListener('click',()=>{
+        const val=parseInt(s.dataset.val);
+        document.getElementById('hint').textContent=labels[val];
+        setTimeout(()=>window.location.href=val>=4?googleUrl:'private.html?rating='+val,400);
+      });
+    });
+  </script>
+</body>
+</html>
