@@ -1,588 +1,1094 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mesopotamia Station — High Country Canterbury</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary: #1a1812;
-      --primary-light: #252118;
-      --accent: #b8935a;
-      --accent-light: #d4aa74;
-      --cream: #f6f1e8;
-      --off-white: #faf8f3;
-      --text: #1a1812;
-      --text-muted: #6b5f4a;
-      --border: rgba(184,147,90,0.2);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--text); line-height: 1.7; }
-    h1, h2, h3 { font-family: 'Syne', sans-serif; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesopotamia Station | New Zealand High Country</title>
+    <meta name="description" content="Mesopotamia Station — New Zealand's most historic high-country station. World-class hunting, authentic station accommodation, and Southern Alps adventures since 1860.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:       #1c2d1e;
+            --primary-dark:  #0f1a10;
+            --accent:        #c9962e;
+            --accent-light:  #e5b84a;
+            --light-bg:      #f5f3ee;
+            --white:         #ffffff;
+            --text-dark:     #1a1a1a;
+            --text-mid:      #4e4e4e;
+            --shadow-sm:     0 2px 12px rgba(0,0,0,0.08);
+            --shadow-md:     0 8px 32px rgba(0,0,0,0.12);
+            --shadow-lg:     0 20px 60px rgba(0,0,0,0.15);
+            --radius-card:   16px;
+        }
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    nav.scrolled {
-      background: rgba(26,24,18,0.96);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 2px 24px rgba(0,0,0,0.3);
-    }
-    .nav-logo {
-      padding: 1rem 1.25rem;
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 2rem; padding: 0 1.25rem; }
-    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent-light); }
-    .nav-cta {
-      padding: 0.52rem 1.2rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
-    @media (max-width: 768px) { .nav-links { display: none; } }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex; align-items: center;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1800&q=85');
-      background-size: cover;
-      background-position: center 40%;
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(120deg, rgba(26,24,18,0.85) 0%, rgba(26,24,18,0.55) 55%, rgba(26,24,18,0.3) 100%);
-    }
-    .hero-content {
-      position: relative;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 8rem 2rem 4rem;
-      width: 100%;
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.35rem 1rem;
-      background: rgba(184,147,90,0.18);
-      border: 1px solid rgba(184,147,90,0.4);
-      border-radius: 50px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--accent-light);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.72);
-      max-width: 500px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-    }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.9rem 2rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,147,90,0.4); }
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.9rem 2rem;
-      border: 1.5px solid rgba(255,255,255,0.35);
-      color: #fff;
-      border-radius: 50px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-outline:hover { border-color: var(--accent); background: rgba(184,147,90,0.1); }
-    .hero-scroll {
-      position: absolute; bottom: 2.5rem; left: 50%;
-      transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-      color: rgba(255,255,255,0.35);
-      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(184,147,90,0.7), transparent);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--light-bg);
+            overflow-x: hidden;
+        }
 
-    /* SECTION BASE */
-    section { padding: 6rem 2rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-tag {
-      display: inline-block;
-      font-size: 0.73rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); margin-bottom: 0.75rem;
-    }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; line-height: 1.1;
-      letter-spacing: -0.02em; margin-bottom: 1rem;
-    }
-    .section-sub { font-size: 0.97rem; color: var(--text-muted); max-width: 480px; line-height: 1.7; }
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            width: 100%;
+            padding: 1.4rem 0;
+            z-index: 1000;
+            transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+        }
+        nav.scrolled {
+            background: rgba(15, 26, 16, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            padding-left: 1rem;
+            flex-shrink: 0;
+        }
+        .nav-logo span { color: var(--accent-light); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+            padding-right: 0.75rem;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.82);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent-light); }
+        .nav-cta {
+            background: var(--accent) !important;
+            color: #fff !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
+        }
+        .nav-cta:hover {
+            background: var(--accent-light) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(201,150,46,0.4) !important;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.3rem;
+            margin-right: 1rem;
+            z-index: 1100;
+        }
+        .hamburger span {
+            width: 23px; height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: block;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ABOUT */
-    .about { background: var(--off-white); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-img { border-radius: 20px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.14); position: relative; }
-    .about-img img { width: 100%; height: 500px; object-fit: cover; display: block; }
-    .about-badge {
-      position: absolute; bottom: 1.5rem; left: 1.5rem;
-      background: rgba(26,24,18,0.88);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(184,147,90,0.4);
-      color: #fff;
-      padding: 0.85rem 1.25rem;
-      border-radius: 14px;
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem;
-    }
-    .about-badge span { display: block; font-size: 1.5rem; font-weight: 800; color: var(--accent); }
-    .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 0.96rem; }
-    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-    .stat-card { padding: 1.2rem; background: var(--cream); border: 1px solid var(--border); border-radius: 14px; }
-    .stat-card .num { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
-    .stat-card .lbl { font-size: 0.79rem; color: var(--text-muted); margin-top: 0.2rem; }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        /* ─── HERO ─── */
+        .hero {
+            height: 100vh;
+            min-height: 620px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center 40%;
+            transform: scale(1.06);
+            transition: transform 9s ease;
+        }
+        .hero-bg.loaded { transform: scale(1); }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                120deg,
+                rgba(10, 20, 10, 0.78) 0%,
+                rgba(28, 45, 30, 0.55) 55%,
+                rgba(0,0,0,0.35) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 6%;
+            max-width: 760px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(201,150,46,0.2);
+            border: 1px solid rgba(201,150,46,0.45);
+            color: var(--accent-light);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 0.38rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.6rem;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.08;
+            margin-bottom: 1.3rem;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent-light);
+        }
+        .hero-sub {
+            font-size: clamp(0.95rem, 1.5vw, 1.12rem);
+            color: rgba(255,255,255,0.82);
+            font-weight: 300;
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            max-width: 520px;
+        }
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.93rem;
+            text-decoration: none;
+            border: 2px solid var(--accent);
+            display: inline-block;
+            transition: all 0.25s ease;
+        }
+        .btn-primary:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,150,46,0.38);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.93rem;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.48);
+            display: inline-block;
+            transition: all 0.25s ease;
+        }
+        .btn-outline:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: pulse-line 2.2s ease-in-out infinite;
+        }
+        @keyframes pulse-line {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
 
-    /* WHAT WE DO */
-    .services-section { background: var(--cream); }
-    .services-header { text-align: center; margin-bottom: 3.5rem; }
-    .services-header .section-sub { margin: 0 auto; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .service-card {
-      background: #fff; border: 1px solid var(--border); border-radius: 18px;
-      padding: 2rem 1.75rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,24,18,0.1); }
-    .service-icon {
-      width: 52px; height: 52px;
-      background: rgba(184,147,90,0.1); border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 1.25rem;
-    }
-    .service-card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .service-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.65; }
+        /* ─── SECTION UTILITIES ─── */
+        .section-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.9rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.9rem);
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.22;
+            margin-bottom: 1.1rem;
+        }
+        .section-body {
+            color: var(--text-mid);
+            font-size: 0.97rem;
+            line-height: 1.82;
+        }
 
-    /* GALLERY */
-    .gallery-section { background: var(--primary); }
-    .gallery-section .section-title { color: #fff; }
-    .gallery-section .section-tag { color: var(--accent-light); }
-    .gallery-section .section-sub { color: rgba(255,255,255,0.5); }
-    .gallery-header { margin-bottom: 2.5rem; }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr;
-      grid-template-rows: 270px 270px;
-      gap: 10px; border-radius: 20px; overflow: hidden;
-    }
-    .g1 { grid-row: 1 / 3; }
-    .gallery-item { overflow: hidden; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
-    .gallery-item:hover img { transform: scale(1.05); }
-    @media (max-width: 768px) {
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .g1 { grid-row: auto; }
-    }
+        /* ─── ABOUT ─── */
+        .about {
+            padding: 8rem 6% 7rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5.5rem;
+            align-items: center;
+        }
+        .about-text .section-body { margin-bottom: 1.1rem; }
+        .about-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.2rem;
+            padding-top: 2.2rem;
+            border-top: 1px solid rgba(28,45,30,0.12);
+        }
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .stat-lbl {
+            font-size: 0.78rem;
+            color: var(--text-mid);
+            letter-spacing: 0.04em;
+            margin-top: 0.3rem;
+        }
+        .about-img-wrap { position: relative; }
+        .about-img-wrap img {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            display: block;
+        }
+        .about-badge {
+            position: absolute;
+            bottom: -1.75rem;
+            left: -1.75rem;
+            background: var(--accent);
+            color: #fff;
+            padding: 1.1rem 1.5rem;
+            border-radius: 14px;
+            box-shadow: 0 10px 28px rgba(201,150,46,0.45);
+        }
+        .about-badge strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .about-badge span {
+            font-size: 0.78rem;
+            opacity: 0.92;
+            display: block;
+            margin-top: 0.2rem;
+        }
 
-    /* REVIEWS */
-    .reviews-section { background: var(--off-white); }
-    .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
-    .rating-big { font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800; color: var(--text); line-height: 1; }
-    .rating-right .stars { color: #f59e0b; font-size: 1.3rem; letter-spacing: 2px; }
-    .rating-right p { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
-    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-    .review-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 1.75rem; transition: box-shadow 0.2s; }
-    .review-card:hover { box-shadow: 0 8px 30px rgba(26,24,18,0.08); }
-    .review-stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.9rem; }
-    .review-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.25rem; font-style: italic; }
-    .review-author { display: flex; align-items: center; gap: 0.75rem; }
-    .review-avatar {
-      width: 38px; height: 38px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
-      color: #fff; background: var(--accent); flex-shrink: 0;
-    }
-    .review-name { font-weight: 600; font-size: 0.87rem; }
-    .review-date { font-size: 0.74rem; color: var(--text-muted); }
-    .reviews-cta { text-align: center; margin-top: 2.5rem; }
-    .btn-review {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 2rem; background: var(--accent); color: #fff;
-      border-radius: 50px; font-weight: 600; font-size: 0.88rem;
-      text-decoration: none; transition: background 0.2s, transform 0.15s;
-    }
-    .btn-review:hover { background: var(--accent-light); transform: translateY(-2px); }
+        /* ─── SERVICES ─── */
+        .services {
+            padding: 9rem 6% 9rem;
+            background: var(--primary-dark);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            margin: -3px 0;
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .services-header .section-title { color: #fff; }
+        .services-header .section-tag { color: var(--accent-light); }
+        .services-header .section-body {
+            color: rgba(255,255,255,0.6);
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .svc-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: var(--radius-card);
+            padding: 2.5rem 2rem 2rem;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .svc-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+        .svc-card:hover {
+            background: rgba(255,255,255,0.09);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+        .svc-card:hover::after { transform: scaleX(1); }
+        .svc-icon { font-size: 2.4rem; margin-bottom: 1.3rem; display: block; }
+        .svc-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+        .svc-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            margin-bottom: 1.4rem;
+        }
+        .svc-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+        .svc-list li {
+            color: rgba(255,255,255,0.68);
+            font-size: 0.84rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .svc-list li::before {
+            content: '';
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
 
-    /* CONTACT */
-    .contact-section { background: var(--primary-light); }
-    .contact-section .section-title { color: #fff; }
-    .contact-section .section-tag { color: var(--accent-light); }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
-    .contact-info p { color: rgba(255,255,255,0.58); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.7; margin-top: 1rem; }
-    .contact-detail { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.1rem; color: rgba(255,255,255,0.78); font-size: 0.9rem; }
-    .contact-detail-icon {
-      width: 38px; height: 38px;
-      background: rgba(184,147,90,0.12); border: 1px solid rgba(184,147,90,0.28);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .contact-form-wrap { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,147,90,0.2); border-radius: 20px; padding: 2.5rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-group { margin-bottom: 1rem; }
-    label { display: block; font-size: 0.76rem; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
-    input, select, textarea {
-      width: 100%; padding: 0.78rem 1rem;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(184,147,90,0.22);
-      border-radius: 10px; color: #fff; font-size: 0.9rem;
-      font-family: 'Inter', sans-serif; outline: none; appearance: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.28); }
-    select option { background: var(--primary); }
-    input:focus, select:focus, textarea:focus { border-color: var(--accent); background: rgba(184,147,90,0.06); }
-    textarea { min-height: 110px; resize: vertical; }
-    .form-submit {
-      width: 100%; padding: 0.95rem;
-      background: var(--accent); color: #fff; border: none;
-      border-radius: 50px; font-size: 0.92rem; font-weight: 600;
-      font-family: 'Inter', sans-serif; cursor: pointer;
-      transition: background 0.2s, transform 0.15s; margin-top: 0.5rem;
-    }
-    .form-submit:hover { background: var(--accent-light); transform: translateY(-1px); }
-    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
-    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        /* ─── GALLERY ─── */
+        .gallery {
+            padding: 7rem 6% 7rem;
+        }
+        .gallery-header { margin-bottom: 2.5rem; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 280px 280px;
+            gap: 0.9rem;
+        }
+        .g-item {
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+        }
+        .g-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.55s ease, filter 0.3s ease;
+        }
+        .g-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.06);
+        }
+        .g-item:first-child { grid-row: 1 / 3; }
+        .g-label {
+            position: absolute;
+            bottom: 0.85rem;
+            left: 0.85rem;
+            background: rgba(10,20,10,0.82);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border-radius: 50px;
+        }
 
-    /* FOOTER */
-    footer { background: var(--primary); padding: 3rem 2rem; border-top: 1px solid rgba(184,147,90,0.15); }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
-    .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 800; color: #fff; }
-    .footer-logo span { color: var(--accent); }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.84rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent-light); }
-    .footer-copy { color: rgba(255,255,255,0.28); font-size: 0.76rem; }
+        /* ─── REVIEWS ─── */
+        .reviews {
+            padding: 9rem 6% 9rem;
+            background: var(--primary);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            margin: -3px 0;
+        }
+        .reviews-hdr {
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+        .reviews-hdr .section-title { color: #fff; }
+        .reviews-hdr .section-tag { color: var(--accent-light); }
+        .reviews-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.85rem;
+            margin-bottom: 3.5rem;
+        }
+        .stars-big { color: var(--accent); font-size: 1.5rem; letter-spacing: 0.06em; }
+        .score-big {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .reviews-meta { color: rgba(255,255,255,0.45); font-size: 0.88rem; }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.3rem;
+        }
+        .r-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-card);
+            padding: 2rem 1.75rem;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .r-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+        }
+        .r-stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.06em; margin-bottom: 1rem; }
+        .r-text {
+            color: rgba(255,255,255,0.78);
+            font-size: 0.91rem;
+            line-height: 1.75;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        .r-author { display: flex; align-items: center; gap: 0.8rem; }
+        .r-avatar {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .r-name { color: #fff; font-weight: 600; font-size: 0.88rem; }
+        .r-date { color: rgba(255,255,255,0.38); font-size: 0.75rem; margin-top: 0.15rem; }
 
-    /* ANIMATIONS */
-    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-  </style>
+        /* ─── CONTACT ─── */
+        .contact {
+            padding: 8rem 6% 7rem;
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .contact-info .section-title { color: var(--primary); margin-bottom: 1rem; }
+        .contact-info .section-body { margin-bottom: 2.2rem; }
+        .contact-details { display: flex; flex-direction: column; gap: 1.1rem; }
+        .c-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-mid);
+            font-size: 0.93rem;
+        }
+        .c-icon {
+            width: 44px; height: 44px;
+            background: rgba(201,150,46,0.12);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .form-wrap {
+            background: #fff;
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .form-wrap h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.75rem;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-group { margin-bottom: 1.1rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.4rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #e2dfd8;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            background: #fafaf7;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(201,150,46,0.14);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group select { cursor: pointer; }
+        .form-submit {
+            width: 100%;
+            padding: 0.92rem;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+            margin-top: 0.5rem;
+        }
+        .form-submit:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(201,150,46,0.32);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--primary-dark);
+            padding: 3.5rem 6% 2rem;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 2rem;
+        }
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: #fff;
+            margin-bottom: 0.55rem;
+        }
+        .footer-brand p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.83rem;
+            max-width: 290px;
+            line-height: 1.65;
+        }
+        .footer-cols { display: flex; gap: 4rem; }
+        .footer-col h4 {
+            color: #fff;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-col ul a {
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            font-size: 0.86rem;
+            transition: color 0.2s;
+        }
+        .footer-col ul a:hover { color: var(--accent-light); }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-bottom p { color: rgba(255,255,255,0.28); font-size: 0.78rem; }
+        .footer-bottom a {
+            color: rgba(255,255,255,0.28);
+            text-decoration: none;
+            font-size: 0.78rem;
+            transition: color 0.2s;
+        }
+        .footer-bottom a:hover { color: var(--accent-light); }
+
+        /* ─── REVEAL ANIMATIONS ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .services-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+            .about { gap: 3.5rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(10,20,10,0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                z-index: 1050;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 1.25rem; }
+            .hamburger { display: flex; }
+
+            .about, .contact {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 5rem 5%;
+            }
+            .about-img-wrap img { height: 340px; }
+            .about-badge { bottom: -1rem; left: -0.75rem; }
+            .about-stats { gap: 1.5rem; }
+
+            .services, .reviews {
+                padding: 6rem 5%;
+                clip-path: none;
+            }
+            .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+
+            .gallery { padding: 5rem 5%; }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+            }
+            .g-item { min-height: 260px; }
+            .g-item:first-child { grid-row: auto; }
+
+            .form-wrap { padding: 2rem 1.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+
+            .footer-top { flex-direction: column; gap: 2rem; }
+            .footer-cols { gap: 2rem; flex-wrap: wrap; }
+            .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <a href="#" class="nav-logo">Mesopotamia <span>Station</span></a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#contact">Contact</a>
-      <a href="#contact" class="nav-cta">Get in Touch</a>
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Mesopotamia <span>Station</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#services">Experiences</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact" class="nav-cta">Enquire Now</a></li>
+        </ul>
     </div>
-  </nav>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg"></div>
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag">High Country Canterbury, New Zealand</div>
-      <h1>Mesopotamia<br /><span>Station</span></h1>
-      <p>A historic high country station in the heart of Canterbury — spanning vast tussock landscapes, heritage farmland, and some of New Zealand's most dramatic scenery.</p>
-      <div class="hero-actions">
-        <a href="#about" class="btn-primary">Discover More ↓</a>
-        <a href="#contact" class="btn-outline">Contact Us</a>
-      </div>
+        <div class="hero-badge">Est. 1860 &nbsp;·&nbsp; Mid-Canterbury, New Zealand</div>
+        <h1>Mesopotamia<br><em>Station</em></h1>
+        <p class="hero-sub">72,000 acres of untamed Southern Alps wilderness. World-class hunting, authentic high-country accommodation, and experiences that belong to New Zealand's most storied station.</p>
+        <div class="hero-btns">
+            <a href="#services" class="btn-primary">Explore Experiences</a>
+            <a href="#contact" class="btn-outline">Plan Your Stay</a>
+        </div>
     </div>
     <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Scroll
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
     </div>
-  </section>
+</section>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img reveal">
-          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="Mesopotamia Station high country Canterbury" loading="lazy" />
-          <div class="about-badge">
-            <span>1860s</span>
-            Est. High Country Station
-          </div>
+<!-- ══════════════ ABOUT ══════════════ -->
+<section class="about" id="about">
+    <div class="about-text">
+        <p class="section-tag">Our Story</p>
+        <h2 class="section-title reveal">A Living Piece of<br>New Zealand History</h2>
+        <p class="section-body reveal reveal-d1">
+            Founded in 1860 by the celebrated English writer Samuel Butler — author of <em>Erewhon</em> — Mesopotamia Station sits at the headwaters of the Rangitata Gorge, nestled between two rivers amid the breathtaking Southern Alps. Butler named it Mesopotamia, meaning "land between two rivers," a name it has carried with pride for over 165 years.
+        </p>
+        <p class="section-body reveal reveal-d2" style="margin-top: 1rem;">
+            The Prouting family have stewarded Mesopotamia since 1945, welcoming generations of guests to share in what makes this place so rare — the sheer scale of the wilderness, the quality of the hunting, and the warmth of genuine high-country hospitality.
+        </p>
+        <div class="about-stats reveal reveal-d3">
+            <div>
+                <div class="stat-num">72k</div>
+                <div class="stat-lbl">Acres of land</div>
+            </div>
+            <div>
+                <div class="stat-num">165+</div>
+                <div class="stat-lbl">Years of history</div>
+            </div>
+            <div>
+                <div class="stat-num">3</div>
+                <div class="stat-lbl">Unique cottages</div>
+            </div>
         </div>
-        <div class="about-text">
-          <span class="section-tag reveal">Our Story</span>
-          <h2 class="section-title reveal reveal-delay-1">Where History Meets<br />The High Country</h2>
-          <p class="reveal reveal-delay-2">Mesopotamia Station sits in the upper Rangitata River valley in Canterbury — one of New Zealand's most storied high country properties. Named after the ancient land between rivers, it's a place where dramatic mountain landscapes meet generations of pastoral farming tradition.</p>
-          <p class="reveal reveal-delay-2">From the station's origins in the 1860s to today, Mesopotamia has remained a working high country farm — raising stock on tussock and snowgrass runs that reach into the Southern Alps.</p>
-          <div class="about-stats reveal reveal-delay-3">
-            <div class="stat-card">
-              <div class="num">1860s</div>
-              <div class="lbl">Historic station origins</div>
-            </div>
-            <div class="stat-card">
-              <div class="num">🏔️</div>
-              <div class="lbl">Southern Alps backdrop</div>
-            </div>
-            <div class="stat-card">
-              <div class="num">🐑</div>
-              <div class="lbl">High country farming</div>
-            </div>
-            <div class="stat-card">
-              <div class="num">🌿</div>
-              <div class="lbl">Pure Canterbury landscapes</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services-section" id="services">
-    <div class="container">
-      <div class="services-header">
-        <span class="section-tag reveal">What We Do</span>
-        <h2 class="section-title reveal reveal-delay-1">Life on the Station</h2>
-        <p class="section-sub reveal reveal-delay-2">From high country pastoral farming to the rugged landscapes that define Canterbury's back country.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-icon">🐑</div>
-          <h3>High Country Farming</h3>
-          <p>Running sheep and cattle across vast tussock runs at the foot of the Southern Alps — farming the way it's been done for generations in Canterbury's back country.</p>
+    <div class="about-img-wrap reveal">
+        <img
+            src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?auto=format&fit=crop&w=800&q=80"
+            alt="High country alpine landscape near Mesopotamia Station, Canterbury"
+        >
+        <div class="about-badge">
+            <strong>1860</strong>
+            <span>Est. by Samuel Butler</span>
         </div>
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">🏔️</div>
-          <h3>Iconic Landscapes</h3>
-          <p>Mesopotamia sits in some of New Zealand's most spectacular scenery — mountain ranges, braided rivers, and sweeping high country runs that stretch to the horizon.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon">🏡</div>
-          <h3>Heritage Station</h3>
-          <p>A working property steeped in New Zealand history, sitting in the valley once farmed by Samuel Butler — the landscape that inspired his writing and captured his imagination.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">🌾</div>
-          <h3>Canterbury Back Country</h3>
-          <p>Pure, remote, and expansive — the station sits beyond the Rangitata Gorge in a valley that feels entirely separate from the modern world.</p>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- GALLERY -->
-  <section class="gallery-section">
-    <div class="container">
-      <div class="gallery-header">
-        <span class="section-tag reveal">Gallery</span>
-        <h2 class="section-title reveal reveal-delay-1">The Land We Call Home</h2>
-        <p class="section-sub reveal reveal-delay-2">High country landscapes, open skies, and the Southern Alps at every turn.</p>
-      </div>
-      <div class="gallery-grid reveal reveal-delay-1">
-        <div class="gallery-item g1">
-          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80" alt="High country Canterbury landscape" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=700&q=80" alt="Southern Alps New Zealand" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="Mountain station New Zealand" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=80" alt="Tussock high country" loading="lazy" />
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=700&q=80" alt="Canterbury back country farming" loading="lazy" />
-        </div>
-      </div>
+<!-- ══════════════ SERVICES ══════════════ -->
+<section class="services" id="services">
+    <div class="services-header">
+        <p class="section-tag">What We Offer</p>
+        <h2 class="section-title reveal">High-Country Experiences<br>Like No Other</h2>
+        <p class="section-body reveal reveal-d1">Whether you're chasing thar across the alpine ridges, gathering family in a historic cottage, or seeking the stillness of New Zealand's raw wilderness — Mesopotamia delivers something unforgettable.</p>
     </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="reviews-section" id="reviews">
-    <div class="container">
-      <div class="reviews-header">
-        <div>
-          <span class="section-tag reveal">Reviews</span>
-          <h2 class="section-title reveal reveal-delay-1">What People Say</h2>
+    <div class="services-grid">
+        <div class="svc-card reveal">
+            <span class="svc-icon">🏹</span>
+            <h3>World-Class Hunting</h3>
+            <p>Free-range, helicopter-drop, and safari hunts across 72,000 acres of prime alpine terrain. Our experienced guides know every ridge, valley, and snow face.</p>
+            <ul class="svc-list">
+                <li>Bull Thar — the ultimate alpine hunt</li>
+                <li>Red Deer &amp; Elk</li>
+                <li>Chamois &amp; Fallow Deer</li>
+                <li>Small game, pigs &amp; birds</li>
+            </ul>
         </div>
-        <div class="reveal reveal-delay-2" style="display:flex;align-items:center;gap:1rem;">
-          <div class="rating-big">5.0</div>
-          <div class="rating-right">
-            <div class="stars">★★★★★</div>
-            <p>Google Reviews</p>
-          </div>
+        <div class="svc-card reveal reveal-d1">
+            <span class="svc-icon">🏡</span>
+            <h3>Station Accommodation</h3>
+            <p>Stay in character-filled cottages set among Oregon pines with Southern Alps views. Perfect for hunting parties, family reunions, or group getaways.</p>
+            <ul class="svc-list">
+                <li>The Hunters' Cottage</li>
+                <li>The Cookhouse — sleeps up to 30</li>
+                <li>The Rowans Pine Cabin</li>
+                <li>Full kitchen, lounge &amp; fireplace</li>
+            </ul>
         </div>
-      </div>
-      <div class="reviews-grid">
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"One of the most remarkable places in New Zealand. The history, the landscape, the sheer remoteness of Mesopotamia is unlike anything else. An incredible piece of Canterbury heritage."</p>
-          <div class="review-author">
-            <div class="review-avatar">MK</div>
-            <div><div class="review-name">Mark K.</div><div class="review-date">1 month ago</div></div>
-          </div>
+        <div class="svc-card reveal reveal-d2">
+            <span class="svc-icon">🚁</span>
+            <h3>Station Adventures</h3>
+            <p>Explore beyond the hunt. Scenic helicopter flights, 4WD tours into the back country, tramping tracks through untouched terrain, and blue-water river fishing.</p>
+            <ul class="svc-list">
+                <li>Scenic helicopter flights</li>
+                <li>4WD station tours</li>
+                <li>Tramping &amp; hiking</li>
+                <li>Rangitata River fishing</li>
+            </ul>
         </div>
-        <div class="review-card reveal reveal-delay-1">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"The drive into the Rangitata Valley alone is worth it. Mesopotamia Station is something truly special — open skies, mountain views, and the kind of quiet you can't find anywhere near the city."</p>
-          <div class="review-author">
-            <div class="review-avatar">AW</div>
-            <div><div class="review-name">Anna W.</div><div class="review-date">3 weeks ago</div></div>
-          </div>
-        </div>
-        <div class="review-card reveal reveal-delay-2">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Stayed in the area while exploring back country Canterbury. Mesopotamia Station is steeped in history and the landscape is absolutely breathtaking. Real New Zealand at its best."</p>
-          <div class="review-author">
-            <div class="review-avatar">JB</div>
-            <div><div class="review-name">James B.</div><div class="review-date">2 months ago</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="reviews-cta reveal">
-        <a href="review.html" class="btn-review">⭐ Leave a Review</a>
-      </div>
     </div>
-  </section>
+</section>
 
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <span class="section-tag reveal">Get In Touch</span>
-          <h2 class="section-title reveal reveal-delay-1">Contact<br />Mesopotamia Station</h2>
-          <p class="reveal reveal-delay-2">Whether you have an enquiry about the station, want to find out more, or are planning a visit to the region — we'd love to hear from you.</p>
-          <div class="reveal reveal-delay-3">
-            <div class="contact-detail">
-              <div class="contact-detail-icon">📍</div>
-              <span>Mesopotamia, Upper Rangitata Valley, Canterbury</span>
+<!-- ══════════════ GALLERY ══════════════ -->
+<section class="gallery" id="gallery">
+    <div class="gallery-header">
+        <p class="section-tag">The Station</p>
+        <h2 class="section-title reveal">Life at Mesopotamia</h2>
+    </div>
+    <div class="gallery-grid">
+        <div class="g-item reveal">
+            <img
+                src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=900&q=80"
+                alt="Dramatic Southern Alps panorama from Mesopotamia Station, Canterbury"
+            >
+            <span class="g-label">Southern Alps</span>
+        </div>
+        <div class="g-item reveal reveal-d1">
+            <img
+                src="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?auto=format&fit=crop&w=600&q=80"
+                alt="Red deer stag in the New Zealand high country"
+            >
+            <span class="g-label">Station Wildlife</span>
+        </div>
+        <div class="g-item reveal reveal-d2">
+            <img
+                src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=600&q=80"
+                alt="Rustic high country cottage accommodation at Mesopotamia"
+            >
+            <span class="g-label">Accommodation</span>
+        </div>
+        <div class="g-item reveal reveal-d1">
+            <img
+                src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=600&q=80"
+                alt="Rangitata River gorge below Mesopotamia Station"
+            >
+            <span class="g-label">Rangitata Gorge</span>
+        </div>
+        <div class="g-item reveal reveal-d2">
+            <img
+                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80"
+                alt="High country pastoral landscape of Mesopotamia Station"
+            >
+            <span class="g-label">High Country Station</span>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════ REVIEWS ══════════════ -->
+<section class="reviews" id="reviews">
+    <div class="reviews-hdr">
+        <p class="section-tag">Guest Reviews</p>
+        <h2 class="section-title reveal">What Our Guests Say</h2>
+    </div>
+    <div class="reviews-rating reveal reveal-d1">
+        <span class="stars-big">★★★★★</span>
+        <span class="score-big">5.0</span>
+        <span class="reviews-meta">&nbsp;· Google Reviews</span>
+    </div>
+    <div class="reviews-grid">
+        <div class="r-card reveal">
+            <div class="r-stars">★★★★★</div>
+            <p class="r-text">"An absolutely incredible experience. The thar hunt was the experience of a lifetime — our guide knew every ridge and snow face. Mesopotamia is unlike anywhere else I've hunted in the world."</p>
+            <div class="r-author">
+                <div class="r-avatar">MT</div>
+                <div>
+                    <div class="r-name">Mike T.</div>
+                    <div class="r-date">Hunting Guest</div>
+                </div>
             </div>
-            <div class="contact-detail">
-              <div class="contact-detail-icon">✉️</div>
-              <span>info@mesopotamia.co.nz</span>
-            </div>
-          </div>
         </div>
-        <div class="contact-form-wrap reveal reveal-delay-2">
-          <form action="https://api.staticforms.xyz/submit" method="post">
-            <input type="hidden" name="apiKey" value="sf_768da8d33927e7f4f241d0a6" />
+        <div class="r-card reveal reveal-d1">
+            <div class="r-stars">★★★★★</div>
+            <p class="r-text">"We booked The Cookhouse for a family reunion — eighteen of us. The setting is breathtaking. Waking up to the Southern Alps every morning is something you simply never forget. The Prouting family were wonderful hosts."</p>
+            <div class="r-author">
+                <div class="r-avatar">SW</div>
+                <div>
+                    <div class="r-name">Sarah W.</div>
+                    <div class="r-date">Group Accommodation Stay</div>
+                </div>
+            </div>
+        </div>
+        <div class="r-card reveal reveal-d2">
+            <div class="r-stars">★★★★★</div>
+            <p class="r-text">"Mesopotamia is one of New Zealand's true treasures. The 5-day mixed hunt was exceptional — thar, red deer and chamois across stunning terrain. History, beauty, and adventure all in one remarkable place."</p>
+            <div class="r-author">
+                <div class="r-avatar">JR</div>
+                <div>
+                    <div class="r-name">James R.</div>
+                    <div class="r-date">Mixed Hunt Guest</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="contact" id="contact">
+    <div class="contact-info">
+        <p class="section-tag">Get In Touch</p>
+        <h2 class="section-title reveal">Ready to Plan Your<br>High-Country Experience?</h2>
+        <p class="section-body reveal reveal-d1">Whether you're planning a hunting expedition, a group station stay, or simply want to explore what Mesopotamia has to offer — we'd love to hear from you. Send us an enquiry and we'll be in touch promptly.</p>
+        <div class="contact-details reveal reveal-d2">
+            <div class="c-detail">
+                <div class="c-icon">📍</div>
+                <span>Rangitata Gorge, Mid-Canterbury,<br>South Island, New Zealand</span>
+            </div>
+            <div class="c-detail">
+                <div class="c-icon">📧</div>
+                <span>info@mesopotamia.co.nz</span>
+            </div>
+            <div class="c-detail">
+                <div class="c-icon">📞</div>
+                <span>+64 (0)3 696 3738</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-wrap reveal">
+        <h3>Send an Enquiry</h3>
+        <form action="https://api.staticforms.xyz/submit" method="post">
+            <input type="hidden" name="apiKey" value="sf_768da8d33927e7f4f241d0a6">
+            <input type="hidden" name="redirectTo" value="https://mesopotamia.co.nz">
             <div class="form-row">
-              <div class="form-group">
-                <label>First Name</label>
-                <input type="text" name="firstName" placeholder="First name" required />
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" name="lastName" placeholder="Last name" required />
-              </div>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+                </div>
             </div>
             <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" placeholder="your@email.com" required />
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
             </div>
             <div class="form-group">
-              <label>Enquiry Type</label>
-              <select name="service" required>
-                <option value="" disabled selected>Select an option</option>
-                <option value="general">General Enquiry</option>
-                <option value="visit">Planning a Visit</option>
-                <option value="history">Station History</option>
-                <option value="farming">Farming Enquiry</option>
-                <option value="other">Other</option>
-              </select>
+                <label for="service">What Are You Interested In?</label>
+                <select id="service" name="service" required>
+                    <option value="" disabled selected>Select an experience</option>
+                    <option value="hunting-thar">Bull Thar Hunting</option>
+                    <option value="hunting-deer">Red Deer / Elk Hunting</option>
+                    <option value="hunting-chamois">Chamois / Fallow Hunting</option>
+                    <option value="hunting-mixed">Mixed Hunt Package</option>
+                    <option value="accommodation">Station Accommodation</option>
+                    <option value="helicopter">Scenic Helicopter Flight</option>
+                    <option value="4wd">4WD Station Tour</option>
+                    <option value="fishing">River Fishing</option>
+                    <option value="group">Group / Event Booking</option>
+                    <option value="general">General Enquiry</option>
+                </select>
             </div>
             <div class="form-group">
-              <label>Message</label>
-              <textarea name="message" placeholder="Your message…" required></textarea>
+                <label for="message">Tell Us About Your Plans</label>
+                <textarea id="message" name="message" placeholder="Preferred dates, group size, experience preferences..." required></textarea>
             </div>
-            <button type="submit" class="form-submit">Send Message →</button>
-          </form>
+            <button type="submit" class="form-submit">Send Enquiry →</button>
+        </form>
+    </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <h3>Mesopotamia Station</h3>
+            <p>New Zealand's most historic high-country station — where wilderness, heritage, and adventure meet at the foot of the Southern Alps.</p>
         </div>
-      </div>
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>Experiences</h4>
+                <ul>
+                    <li><a href="#services">Thar Hunting</a></li>
+                    <li><a href="#services">Red Deer &amp; Elk</a></li>
+                    <li><a href="#services">Station Accommodation</a></li>
+                    <li><a href="#services">Helicopter Flights</a></li>
+                    <li><a href="#services">Fishing &amp; Tramping</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Station</h4>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">Mesopotamia <span>Station</span></div>
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="footer-copy">© 2025 Mesopotamia Station, Canterbury</div>
+    <div class="footer-bottom">
+        <p>© 2025 Mesopotamia Station. All rights reserved.</p>
+        <a href="mailto:info@mesopotamia.co.nz">info@mesopotamia.co.nz</a>
     </div>
-  </footer>
+</footer>
 
-  <script>
+<script>
+    // Sticky nav
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
+        navbar.classList.toggle('scrolled', window.scrollY > 70);
+    }, { passive: true });
+
+    // Hero Ken Burns effect — set src after render for the animation to fire
+    const heroBg = document.getElementById('heroBg');
+    heroBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80')";
+    requestAnimationFrame(() => setTimeout(() => heroBg.classList.add('loaded'), 80));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        hamburger.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
     });
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            hamburger.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Scroll reveal with IntersectionObserver
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+    reveals.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
